@@ -38,7 +38,6 @@ const saveFormData = () => {
   const formData = {};
   document.querySelectorAll("input").forEach((input) => {
     if (input.value.trim() != "" && input.type != "password") {
-      console.log(formData);
       formData[input.name] = input.value;
     }
   });
