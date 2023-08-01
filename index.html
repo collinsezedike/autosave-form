@@ -8,6 +8,11 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <title>Register</title>
   <style>
+    html,
+    body {
+      height: 90%;
+    }
+
     .page {
       display: none;
     }
@@ -15,70 +20,75 @@
 </head>
 
 <body>
-  <div class="d-flex mt-5 align-items-center justify-content-center">
-    <form id="register-form">
+  <div class="container d-flex h-100 align-items-center justify-content-center">
+    <div class="form-container border rounded p-5">
+      <form id="register-form">
 
-      <div class="container-fluid page page-1" id="page1">
-        <div class="mb-3">
-          <label for="firstNameInput" class="form-label">First name</label>
-          <input type="text" class="form-control formInput" id="firstNameInput" name="firstname" placeholder="John">
-          <div id="firstNameInputFeedback" class="feedback"></div>
+        <div class="container-fluid page page-1">
+          <div class="mb-3">
+            <label for="firstNameInput" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstNameInput" name="firstname" placeholder="John">
+            <div id="firstNameInputFeedback" class="feedback"></div>
+          </div>
+          <div class="mb-3">
+            <label for="lastNameInput" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastNameInput" name="lastname" placeholder="Doe">
+            <div id="lastNameInputFeedback" class="feedback"></div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-light prev-btn disabled">Previous</button>
+            <button type="button" class="btn btn-primary next-btn" onclick="nextPage()">Next</button>
+          </div>
         </div>
-        <div class="mb-3">
-          <label for="lastNameInput" class="form-label">Last name</label>
-          <input type="text" class="form-control formInput" id="lastNameInput" name="lastname" placeholder="Doe">
-          <div id="lastNameInputFeedback" class="feedback"></div>
+
+        <div class="container-fluid page page-2">
+          <div class="mb-3">
+            <label for="phoneInput" class="form-label">Phone number</label>
+            <input type="tel" class="form-control" id="phoneInput" name="phone" placeholder="000-0000-000">
+            <div id="phoneInputFeedback" class="feedback"></div>
+          </div>
+          <div class="mb-3">
+            <label for="emailInput" class="form-label">Email address</label>
+            <input type="text" class="form-control" id="emailInput" name="email"
+              placeholder="johndoe@email.com">
+            <div id="emailInputFeedback" class="feedback"></div>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-light prev-btn" onclick="prevPage()">Previous</button>
+            <button type="button" class="btn btn-primary next-btn" onclick="nextPage()">Next</button>
+          </div>
         </div>
-        <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-light prev-btn disabled">Previous</button>
-          <button type="button" class="btn btn-primary next-btn" onclick="nextPage()">Next</button>
+
+        <div class="container-fluid page page-3">
+          <div class="mb-3">
+            <label for="passwordInput" class="form-label">Password</label>
+            <input type="password" class="form-control" id="passwordInput" name="password"
+              placeholder="*********">
+            <div id="passwordInputFeedback" class="feedback"></div>
+          </div>
+          <div class="mb-3">
+            <label for="passwordInput" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPasswordInput" name="confirmPassword"
+              placeholder="*********">
+            <div id="confirmPasswordInputFeedback" class="feedback"></div>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" name="agreeToTerms" id="checkInput">
+            <label class="form-check-label" for="checkInput">Do you agree to the terms and conditions?</label>
+            <div id="checkInputFeedback" class="feedback"></div>
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-light prev-btn" onclick="prevPage()">Previous</button>
+            <button class="btn btn-primary" type="button" onclick="submitForm()">Submit</button>
+          </div>
         </div>
+
+      </form>
+      <div class="submitted d-none container-fluid page page-4">
+        <h2>Form submitted successfully!</h2>
       </div>
-
-      <div class="container-fluid page page-2" id="page2">
-        <div class="mb-3">
-          <label for="phoneInput" class="form-label">Phone number</label>
-          <input type="tel" class="form-control formInput" id="phoneInput" name="phone" placeholder="000-0000-000">
-          <div id="phoneInputFeedback" class="feedback"></div>
-        </div>
-        <div class="mb-3">
-          <label for="emailInput" class="form-label">Email address</label>
-          <input type="text" class="form-control formInput" id="emailInput" name="email"
-            placeholder="johndoe@email.com">
-          <div id="emailInputFeedback" class="feedback"></div>
-        </div>
-
-        <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-light prev-btn" onclick="prevPage()">Previous</button>
-          <button type="button" class="btn btn-primary next-btn" onclick="nextPage()">Next</button>
-        </div>
-      </div>
-
-      <div class="container-fluid page page-3" id="page3">
-        <div class="mb-3">
-          <label for="passwordInput" class="form-label">Password</label>
-          <input type="password" class="form-control formInput" id="passwordInput" name="password"
-            placeholder="*********">
-          <div id="passwordInputFeedback" class="feedback"></div>
-        </div>
-        <div class="mb-3">
-          <label for="passwordInput" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control formInput" id="confirmPasswordInput" name="confirmPassword"
-            placeholder="*********">
-          <div id="confirmPasswordInputFeedback" class="feedback"></div>
-        </div>
-        <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" name="agreeToTerms" id="checkInput">
-          <label class="form-check-label formInput" for="checkInput">Do you agree to the terms and conditions?</label>
-          <div id="confirmPasswordInputFeedback" class="feedback"></div>
-        </div>
-        <div class="d-flex justify-content-between">
-          <button type="button" class="btn btn-light prev-btn" onclick="prevPage()">Previous</button>
-          <button class="btn btn-primary" type="button" onclick="submitForm()">Submit</button>
-        </div>
-      </div>
-
-    </form>
+    </div>
   </div>
   <script src="./script.js"></script>
 </body>

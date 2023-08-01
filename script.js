@@ -12,12 +12,12 @@ const isFieldsFilled = (pageNumber) => {
   const pageInputs = document.querySelectorAll(`.page-${pageNumber} input`);
   for (const input of pageInputs) {
     const feedbackDiv = document.getElementById(`${input.id}Feedback`);
-    if (input.value.trim() === "") {
+    if (input.value.trim() === "" | (input.type === "checkbox" && !input.checked)) {
       input.classList.add("border-danger");
       feedbackDiv.innerHTML =
         "<p class='text-danger'>This field is required</p>";
       return false;
-    }
+    } 
     input.classList.remove("border-danger");
     feedbackDiv.innerHTML = "";
   }
@@ -53,6 +53,27 @@ const loadFormData = () => {
     });
   }
 };
+
+const submitForm = () => {
+  if (isFieldsFilled(currentPage)) {
+    const passwordField = document.getElementById("passwordInput")
+    const confirmPasswordField = document.getElementById("confirmPasswordInput")
+
+    if (passwordField.value != confirmPasswordField.value) {
+      passwordField.classList.add("border-danger")
+      const feedbackDiv = document.getElementById(`${passwordField.id}Feedback`);
+      feedbackDiv.innerHTML =
+        "<p class='text-danger'>Passwords do not match</p>";
+      passwordField.value == ""
+      confirmPasswordField.value == ""
+    } else {
+      document.querySelector(".submitted").classList.remove("d-none")
+      document.querySelector("form").reset()
+      localStorage.removeItem("formData")
+      showPage(currentPage + 1)
+    }
+  }
+}
 
 showPage(currentPage);
 loadFormData();
